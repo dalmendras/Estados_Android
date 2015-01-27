@@ -38,10 +38,10 @@ concat(
       if(t0.agencodigodestino != t1.agencodigodestino or (t0.agencodigodestino is null and t1.agencodigodestino is not null), concat('agencodigodestino =',t1.agencodigodestino), null),
       if(t0.comucodigo        != t1.comucodigo        or (t0.comucodigo        is null and t1.comucodigo        is not null), concat('comucodigo =',       t1.comucodigo), null),
       if(t0.entrut            != t1.entrut            or (t0.entrut            is null and t1.entrut            is not null), concat('entrut =',           t1.entrut), null),
-      if(t0.entdv             != t1.entdv             or (t0.entdv             is null and t1.entdv             is not null), concat("entdv ='",           t1.entdv,"'"), null),
-      if(t0.entapellidop      != t1.entapellidop      or (t0.entapellidop      is null and t1.entapellidop      is not null), concat("entapellidop ='",    t1.entapellidop,"'"), null),
-      if(t0.entapellidom      != t1.entapellidom      or (t0.entapellidom      is null and t1.entapellidom      is not null), concat("entapellidom ='",    t1.entapellidom,"'"), null),
-      if(t0.entnombres        != t1.entnombres        or (t0.entnombres        is null and t1.entnombres        is not null), concat("entnombres ='",      t1.entnombres,"'"), null),
+      if(t0.entdv             != t1.entdv             or (t0.entdv             is null and t1.entdv             is not null), concat('entdv ="',           t1.entdv,'"'), null),
+      if(t0.entapellidop      != t1.entapellidop      or (t0.entapellidop      is null and t1.entapellidop      is not null), concat('entapellidop ="',    t1.entapellidop,'"'), null),
+      if(t0.entapellidom      != t1.entapellidom      or (t0.entapellidom      is null and t1.entapellidom      is not null), concat('entapellidom ="',    t1.entapellidom,'"'), null),
+      if(t0.entnombres        != t1.entnombres        or (t0.entnombres        is null and t1.entnombres        is not null), concat('entnombres ="',      t1.entnombres,'"'), null),
       if(t0.entfecha          != t1.entfecha          or (t0.entfecha          is null and t1.entfecha          is not null), concat("entfecha ='",        t1.entfecha,"'"), null)
 
 			),

@@ -33,7 +33,7 @@ ALTER TABLE `android`.`mv_of_estado` ADD COLUMN `agencodigoorigen` int(11) unsig
 ALTER TABLE `android`.`mv_of_estado` ADD COLUMN `agencodigodestino` int(11) unsigned DEFAULT NULL AFTER `agencodigoorigen`;
 ALTER TABLE `android`.`mv_of_estado` ADD COLUMN `comucodigo` smallint(6) DEFAULT NULL AFTER `agencodigodestino`;
 ALTER TABLE `android`.`mv_of_estado` ADD COLUMN `entrut` int(11) DEFAULT NULL AFTER `comucodigo`;
-ALTER TABLE `android`.`mv_of_estado` ADD COLUMN `entdv` int(11) DEFAULT NULL AFTER `entrut`;
+ALTER TABLE `android`.`mv_of_estado` ADD COLUMN `entdv` CHAR(1) DEFAULT NULL AFTER `entrut`;
 ALTER TABLE `android`.`mv_of_estado` ADD COLUMN `entapellidop` VARCHAR(20) DEFAULT NULL AFTER `entdv`;
 ALTER TABLE `android`.`mv_of_estado` ADD COLUMN `entapellidom` VARCHAR(20) DEFAULT NULL AFTER `entapellidop`;
 ALTER TABLE `android`.`mv_of_estado` ADD COLUMN `entnombres` VARCHAR(20) DEFAULT NULL AFTER `entapellidom`;
@@ -50,7 +50,7 @@ ALTER TABLE `android`.`mv_of_estado_temp` ADD COLUMN `agencodigoorigen` int(11) 
 ALTER TABLE `android`.`mv_of_estado_temp` ADD COLUMN `agencodigodestino` int(11) unsigned DEFAULT NULL AFTER `agencodigoorigen`;
 ALTER TABLE `android`.`mv_of_estado_temp` ADD COLUMN `comucodigo` smallint(6) DEFAULT NULL AFTER `agencodigodestino`;
 ALTER TABLE `android`.`mv_of_estado_temp` ADD COLUMN `entrut` int(11) DEFAULT NULL AFTER `comucodigo`;
-ALTER TABLE `android`.`mv_of_estado_temp` ADD COLUMN `entdv` int(11) DEFAULT NULL AFTER `entrut`;
+ALTER TABLE `android`.`mv_of_estado_temp` ADD COLUMN `entdv` CHAR(1) DEFAULT NULL AFTER `entrut`;
 ALTER TABLE `android`.`mv_of_estado_temp` ADD COLUMN `entapellidop` VARCHAR(20) DEFAULT NULL AFTER `entdv`;
 ALTER TABLE `android`.`mv_of_estado_temp` ADD COLUMN `entapellidom` VARCHAR(20) DEFAULT NULL AFTER `entapellidop`;
 ALTER TABLE `android`.`mv_of_estado_temp` ADD COLUMN `entnombres` VARCHAR(20) DEFAULT NULL AFTER `entapellidom`;
