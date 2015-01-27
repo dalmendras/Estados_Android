@@ -196,31 +196,46 @@ public class Proceso_Of_Est_Movil {
 		DateTime fec_ini = formatter.parseDateTime(f_inicio);
 		DateTime fec_fin = formatter.parseDateTime(f_fin);
 		
-		String queryDls = null; 
-		/*queryDls = "SELECT " +
-					 "t0.odflcodigo, " +
-					 "t0.eprocodigo " +
-					 "FROM mv_orden_flete t0 " +
-					 "WHERE t0.odflfechemicorta >= ADD_MONTHS(TODAY, -2) ";*/
+		String queryDls = null;
 		
 		queryDls = "SELECT " + 
 					"t0.odflcodigo, " +
-					"to_char(t0.odflfechemicorta,'%Y-%m-%d') AS odflfechemicorta, " +
+					"to_char(t0.odflfechemicorta,'%Y-%m-%d') AS odflfechemicorta, " + 
 					"t0.eprocodigo, " +
-					"CASE WHEN pd.odflcodigo >= 0 THEN 1 ELSE 0 END as epropd, " +
-					"CASE WHEN t1.odflcodigo >= 0 THEN 1 ELSE 0 END as epropda " +
+					"CASE WHEN pd.odflcodigo >= 0 THEN 1 ELSE 0 END as epropd, " + 
+					"CASE WHEN t1.odflcodigo >= 0 THEN 1 ELSE 0 END as epropda, " +
+					"to_char(t0.odflfechentrest,'%Y-%m-%d') AS odflfechentrest, " +
+					"to_char(t0.odflfechentrega,'%Y-%m-%d') AS odflfechentrega, " +
+					"t0.tsercodigo, " +
+					"t0.tentcodigo, " +
+					"t0.tpagcodigo, " +
+					"t0.ciudcodigoorigen, " +
+					"t0.ciudcodigodestino, " +
+					"t0.agencodigoorigen, " +
+					"t0.agencodigodestino, " +
+					"t3.comucodigo, " +
+					"CASE WHEN t2.enofrut is not null THEN t2.enofrut ELSE t1.enpdrut END as entrut, " +
+					"CASE WHEN t2.enofrut is not null THEN t2.enofdv ELSE t1.enpddv END as entdv, " +
+					"CASE WHEN t2.enofrut is not null THEN trim(t2.enofapellidop) ELSE trim(t1.enpdapellidop) END as entapellidop, " +
+					"CASE WHEN t2.enofrut is not null THEN trim(t2.enofapellidom) ELSE trim(t1.enpdapellidom) END as entapellidom, " +
+					"CASE WHEN t2.enofrut is not null THEN trim(t2.enofnombres) ELSE trim(t1.enpdnombres) END as entnombres, " +
+					"CASE WHEN t2.enofrut is not null THEN to_char(t2.enoffecha,'%Y-%m-%d') ELSE to_char(t1.enpdfecha,'%Y-%m-%d') END as entfecha " +
 					"FROM mv_orden_flete t0 " +
 					" LEFT JOIN (SELECT t0.odflcodigo " + 
-					"		 FROM mv_orden_flete t0 " +
-					"		 WHERE t0.eprocodigo IN (3, 4, 5, 19, 20) " + 
-					"		 AND EXISTS (SELECT 1 " +
-					"					FROM mv_encargo t5 " +  
-					"					INNER JOIN ma_ubicacion_fisic t6 ON t6.ubifcodigo = t5.ubiccodigoactual " + 
-					"					WHERE t5.odflcodigo = t0.odflcodigo " +
-					"					AND t6.agencodigo != t0.agencodigoorigen)) AS pd ON pd.odflcodigo = t0.odflcodigo " + 
+					"            FROM mv_orden_flete t0 " +
+					"            WHERE t0.eprocodigo IN (3, 4, 5, 19, 20) " +
+					"            AND t0.odflfechemicorta >= MDY(" + fec_ini.getMonthOfYear() + "," +  fec_ini.getDayOfMonth() + "," + fec_ini.getYear() + ") " +
+					"            AND t0.odflfechemicorta < MDY(" + fec_fin.getMonthOfYear() + "," + fec_fin.getDayOfMonth() + "," + fec_fin.getYear() + ") " +
+					"            AND EXISTS (SELECT 1 " +
+					"                        FROM mv_encargo t5 " +
+					"                        INNER JOIN ma_ubicacion_fisic t6 ON t6.ubifcodigo = t5.ubiccodigoactual " +
+					"                        WHERE t5.odflcodigo = t0.odflcodigo " +
+					"                        AND t6.agencodigo != t0.agencodigoorigen)) AS pd ON pd.odflcodigo = t0.odflcodigo " +
 					" LEFT JOIN mv_entrega_pda    t1 ON t1.odflcodigo = t0.odflcodigo " +
-					"WHERE t0.odflfechemicorta >= MDY(" + fec_ini.getMonthOfYear() + "," +  fec_ini.getDayOfMonth() + "," + fec_ini.getYear() + ") " +  //'" + f_inicio + "' " +
-					"AND t0.odflfechemicorta < MDY(" + fec_fin.getMonthOfYear() + "," + fec_fin.getDayOfMonth() + "," + fec_fin.getYear() + ") "; //'" + f_fin + "' "; 
+					" LEFT JOIN mv_entrega_of     t2 ON t2.odflcodigo = t0.odflcodigo " +
+					"INNER JOIN mv_destinatario   t3 ON t3.odflcodigo = t0.odflcodigo " +
+					"WHERE t0.odflfechemicorta >= MDY(" + fec_ini.getMonthOfYear() + "," +  fec_ini.getDayOfMonth() + "," + fec_ini.getYear() + ") " +
+					"AND t0.odflfechemicorta < MDY(" + fec_fin.getMonthOfYear() + "," + fec_fin.getDayOfMonth() + "," + fec_fin.getYear() + ") ";
 		
 		
 		return queryDls;
